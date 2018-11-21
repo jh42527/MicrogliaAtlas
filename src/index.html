@@ -1,191 +1,264 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Microglia Single Cell Atlas of Health and Injury</title>
+  <head>
+    <title>Microglia Single Cell Atlas of Health and Injury</title>
 
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style>
-            body {
-                margin: 0;
-                font-family: Arial, Helvetica, sans-serif;
-            }
+    <link
+      rel="stylesheet"
+      href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+      }
 
-            .topnav {
-                overflow: hidden;
-                background-color: #333333;
-            }
+      .topnav {
+        overflow: hidden;
+        background-color: #333333;
+      }
 
-            .topnav a {
-                float: left;
-                display: block;
-                color: white;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-                font-size: 17px;
-            }
+      .topnav a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+      }
 
-            .topnav a:hover {
-                color: #2196F3;
-            }
+      .topnav a:hover {
+        color: #2196f3;
+      }
 
-            .topnav a.active {
-                color: #2196F3;
-            }
+      .topnav a.active {
+        color: #2196f3;
+      }
 
-            .topnav .search-container {
-                float: right;
-            }
+      .topnav .search-container {
+        float: right;
+      }
 
-            .topnav input[type=text] {
-                padding: 6px;
-                margin-top: 8px;
-                font-size: 17px;
-                border: none;
-            }
+      .topnav input[type="text"] {
+        padding: 6px;
+        margin-top: 8px;
+        font-size: 17px;
+        border: none;
+      }
 
-            .topnav .search-container button {
-                float: right;
-                padding: 6px 10px;
-                margin-top: 8px;
-                margin-right: 16px;
-                background: #ddd;
-                font-size: 17px;
-                border: none;
-                cursor: pointer;
-            }
+      .topnav .search-container button {
+        float: right;
+        padding: 6px 10px;
+        margin-top: 8px;
+        margin-right: 16px;
+        background: #ddd;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+      }
 
-            .topnav .search-container button:hover {
-                background: #ccc;
-            }
+      .topnav .search-container button:hover {
+        background: #ccc;
+      }
 
-            .contents {
-                left: 0;
-                right: 0;
-                margin: auto;
-                width: 900px;
-            }
+      .contents {
+        left: 0;
+        right: 0;
+        margin: auto;
+        width: 900px;
+      }
 
-            h2, h3, h4 {
-                color: DarkRed;
-            }
+      h2,
+      h3,
+      h4 {
+        color: DarkRed;
+      }
 
-            .diagram {
-                margin-top: 30px;
-                width: 100%
-            }
+      .diagram {
+        margin-top: 30px;
+        width: 100%;
+      }
 
-            @media screen and (max-width: 800px) {
-                .topnav .search-container {
-                    float: none;
-                }
+      @media screen and (max-width: 800px) {
+        .topnav .search-container {
+          float: none;
+        }
 
-                .topnav a, .topnav input[type=text], .topnav .search-container button {
-                    float: none;
-                    display: block;
-                    text-align: left;
-                    width: 100%;
-                    margin: 0;
-                    padding: 14px;
-                }
+        .topnav a,
+        .topnav input[type="text"],
+        .topnav .search-container button {
+          float: none;
+          display: block;
+          text-align: left;
+          width: 100%;
+          margin: 0;
+          padding: 14px;
+        }
 
-                .topnav input[type=text] {
-                    border: 1px solid #ccc;  
-                }
+        .topnav input[type="text"] {
+          border: 1px solid #ccc;
+        }
 
-                .contents {
-                    width: 480px;
-                }
-            }
-        </style>
-    </head>
-<body>
-
+        .contents {
+          width: 480px;
+        }
+      }
+    </style>
+  </head>
+  <body>
     <div class="topnav">
-        <a href="/" class="active">HAMMOND ET. AL 2018</a>
-        <a href="https://stevenslab.org/" target="_blank">STEVENS LAB</a>
-        <a href="http://mccarrolllab.com/" target="_blank">MCCARROLL LAB</a>
-        <a href="https://twitter.com/stevens1lab" target="_blank">
-            <img src="https://storage.googleapis.com/microgliaatlas_images/Static_images/twitter.png" style="height: 24px; width: 24px; margin-top: -5px;"/>
-        </a>
-        <div class="search-container">
-            <input id="inputsearch" type="text" placeholder="Gene Search.." name="search">
-            <button id="btnsearch" type="submit"><i class="fa fa-search"></i></button>
-        </div>
+      <a href="/" class="active">HAMMOND ET. AL 2018</a>
+      <a href="https://stevenslab.org/" target="_blank">STEVENS LAB</a>
+      <a href="http://mccarrolllab.com/" target="_blank">MCCARROLL LAB</a>
+      <a href="https://twitter.com/stevens1lab" target="_blank">
+        <img
+          src="https://storage.googleapis.com/microgliaatlas_images/Static_images/twitter.png"
+          style="height: 24px; width: 24px; margin-top: -5px;"
+        />
+      </a>
+      <div class="search-container">
+        <input
+          id="inputsearch"
+          type="text"
+          placeholder="Gene Search.."
+          name="search"
+        />
+        <button id="btnsearch" type="submit">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
     </div>
 
     <div class="contents">
-        <div id="divcontents">
-            <div>
-                <img width="100%" src="https://storage.googleapis.com/microgliaatlas_images/Static_images/header.jpg">
-            </div>   
-            <div>
-                <h3>High throughput single microglia sequencing reveals complex cell state changes throughout the mouse lifespan and in the injured brain.</h3>
-            </div>
-            <div>
-                Microglia are the resident immune cells of the brain and are highly dynamic cells that respond to changes in their environment. We sequenced mouse microglia from E14.5 to 18 months as well as following demyelinating injury to capture the most comprehensive atlas of microglia cell state diversity to date. Use this searchable database to explore these state changes and gene expression changes in over 76,000 sequenced microglia from 41 mice. Download cluster-specific markers <a href="https://storage.googleapis.com/microgliaatlas_images/Cluster_markers/Cluster_markers.xlsx" target="_blank">here</a>.
-            </div>     
-            <div>
-                <h4>Methods</h4>
-            </div>       
-            <div>
-                It was essential to isolate microglia without activating them ex vivo. We developed a novel protocol to isolate microglia at 4 degrees to minimize any potential artifacts (see diagram). Detailed description of methods in published manuscript.  
-            </div>   
-            <div>
-                <img class="diagram" src="https://storage.googleapis.com/microgliaatlas_images/Static_images/diagram.png">
-            </div>   
-            <div>
-                <h4>Manuscript</h4>
-            </div>   
-            <div>
-                Please follow the link below to view the complete manuscipt…
-            </div> 
-        </div>  
+      <div id="divcontents">
+        <div>
+          <img
+            width="100%"
+            src="https://storage.googleapis.com/microgliaatlas_images/Static_images/header.jpg"
+          />
+        </div>
+        <div>
+          <h3>
+            Single cell RNA sequencing of microglia throughout the mouse
+            lifespan and in the injured brain reveals complex cell-state changes
+          </h3>
+        </div>
+        <div>
+          Microglia are the resident immune cells of the brain and are highly
+          dynamic cells that respond to changes in their environment. We
+          sequenced mouse microglia from E14.5 to 18 months as well as following
+          demyelinating injury to capture the most comprehensive atlas of
+          microglia cell state diversity to date. Use this searchable database
+          to explore these state changes and gene expression changes in over
+          76,000 sequenced microglia from 41 mice. Download cluster-specific
+          markers
+          <a
+            href="https://storage.googleapis.com/microgliaatlas_images/Cluster_markers/Cluster_markers.xlsx"
+            target="_blank"
+            >here</a
+          >.
+        </div>
+        <div><h4>Methods</h4></div>
+        <div>
+          It was essential to isolate microglia without activating them ex vivo.
+          We developed a novel protocol to isolate microglia at 4 degrees to
+          minimize any potential artifacts (see diagram). Detailed description
+          of methods in published manuscript.
+        </div>
+        <div>
+          <img
+            class="diagram"
+            src="https://storage.googleapis.com/microgliaatlas_images/Static_images/diagram.png"
+          />
+        </div>
+        <div><h4>Manuscript</h4></div>
+        <div style="margin-bottom: 20px;">
+          Hammond TR, Dufort C, Dissing-Olesen L, Giera S, Young A, Wysoker A,
+          Walker A, Segel M, Saunders A, Macosko E, Marsh SM, Nemesh J, Ginhoux
+          F, Chen J, Franklin RJ, Piao X, McCarroll S, and Stevens B.
+          <span style="text-decoration: underline;"
+            >Single cell RNA sequencing of microglia throughout the mouse
+            lifespan and in the injured brain reveals complex cell-state
+            changes</span
+          >. <span style="font-weight: bold;">Immunity</span> (2018).
+        </div>
+        <div style="margin-bottom: 20px;">
+          <a
+            href="https://www.cell.com/immunity/fulltext/S1074-7613(18)30485-0"
+          >
+            Link to paper
+          </a>
+        </div>
+      </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-129273535-1"
+    ></script>
     <script>
-        var searchResult = function() {
-            var searchInput = $("#inputsearch").val();
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-            $.getJSON(
-                "/api/cells?key=" + searchInput,
-                function (data) {
-                    if(data.length > 0) {
-                        $("#divcontents").html("<div align='center'><div><h1>" +  searchInput + "</h1></div><div class='class=col-md-4'><span class='card mb-4 box-shadow'><img height='396px' width='390px' src='https://storage.googleapis.com/microgliaatlas_images/Static_images/Static_image_2.png'></span><span class='card mb-4 box-shadow'><img height='384px' width='480px' src='https://storage.googleapis.com/microgliaatlas_images/All_ages/" + searchInput + "_1.png'></span></div><div class='class=col-md-4'><div class='card mb-4 box-shadow'><img height='144px' width='720px' src='https://storage.googleapis.com/microgliaatlas_images/All_ages/" + searchInput + "_3.png'></div><div><img height='35px' width='666px' style='margin-left: 48px' src='https://storage.googleapis.com/microgliaatlas_images/Static_images/Static_image_3.png'></div></div><div class='class=col-md-4'><span class='card mb-4 box-shadow'><img height='307px' width='410px' src='https://storage.googleapis.com/microgliaatlas_images/Static_images/Static_image_4.png'></span><span class='card mb-4 box-shadow'><img height='340px' width='360px' src='https://storage.googleapis.com/microgliaatlas_images/All_ages/" + searchInput + "_2.png'></span></div></div>");
-                    } else {
-                        $("#divcontents").html("<div align='center'><div><h1>No Results Found</h1></div></div>");
-                    }
-                }
-            );
-        }
-
-        $('#btnsearch').click(searchResult);
-
-        $(function () {
-            var getData = function (request, response) {
-                $.getJSON(
-                    "/api/cells?key=" + request.term,
-                    function (data) {
-                        response(data);
-                    }
-                );
-            };
-        
-            var selectItem = function (event, ui) {
-                $("#inputsearch").val(ui.item.value);
-                return false;
-            }
-        
-            $("#inputsearch").autocomplete({
-                source: getData,
-                minLength: 2,
-                change: function() { }
-            });
-        });
+      gtag("config", "UA-129273535-1");
     </script>
-</body>
+
+    <script>
+      var searchResult = function() {
+        var searchInput = $("#inputsearch").val();
+
+        $.getJSON("/api/cells?key=" + searchInput, function(data) {
+          if (data.length > 0) {
+            $("#divcontents").html(
+              "<div align='center'><div><h1>" +
+                searchInput +
+                "</h1></div><div class='class=col-md-4'><span class='card mb-4 box-shadow'><img height='396px' width='390px' src='https://storage.googleapis.com/microgliaatlas_images/Static_images/Static_image_2.png'></span><span class='card mb-4 box-shadow'><img height='384px' width='480px' src='https://storage.googleapis.com/microgliaatlas_images/All_ages/" +
+                searchInput +
+                "_1.png'></span></div><div class='class=col-md-4'><div class='card mb-4 box-shadow'><img height='144px' width='720px' src='https://storage.googleapis.com/microgliaatlas_images/All_ages/" +
+                searchInput +
+                "_3.png'></div><div><img height='35px' width='666px' style='margin-left: 48px' src='https://storage.googleapis.com/microgliaatlas_images/Static_images/Static_image_3.png'></div></div><div class='class=col-md-4'><span class='card mb-4 box-shadow'><img height='307px' width='410px' src='https://storage.googleapis.com/microgliaatlas_images/Static_images/Static_image_4.png'></span><span class='card mb-4 box-shadow'><img height='340px' width='360px' src='https://storage.googleapis.com/microgliaatlas_images/All_ages/" +
+                searchInput +
+                "_2.png'></span></div></div>"
+            );
+          } else {
+            $("#divcontents").html(
+              "<div align='center'><div><h1>No Results Found</h1></div></div>"
+            );
+          }
+        });
+      };
+
+      $("#btnsearch").click(searchResult);
+
+      $(function() {
+        var getData = function(request, response) {
+          $.getJSON("/api/cells?key=" + request.term, function(data) {
+            response(data);
+          });
+        };
+
+        var selectItem = function(event, ui) {
+          $("#inputsearch").val(ui.item.value);
+          return false;
+        };
+
+        $("#inputsearch").autocomplete({
+          source: getData,
+          minLength: 2,
+          change: function() {}
+        });
+      });
+    </script>
+  </body>
 </html>
