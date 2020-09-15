@@ -6,14 +6,11 @@ package main
 
 import (
 	"encoding/json"
-	"html/template"
 	"log"
 	"net/http"
+	"os"
 	"strings"
-
-	// [START imports]
-	"google.golang.org/appengine"
-	// [END imports]
+	"text/template"
 )
 
 var (
@@ -29,7 +26,18 @@ func main() {
 	http.HandleFunc("/api/cells", cellHandler)
 	http.HandleFunc("/", indexHandler)
 
-	appengine.Main()
+	// [START setting_port]
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+		log.Printf("Defaulting to port %s", port)
+	}
+
+	log.Printf("Listening on port %s", port)
+	if err := http.ListenAndServe(":"+port, nil); err != nil {
+		log.Fatal(err)
+	}
+	// [END setting_port]
 }
 
 // Index Router
